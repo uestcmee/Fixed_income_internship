@@ -9,9 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from pandas import read_csv
 import math
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
+from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 
@@ -76,18 +74,13 @@ testX, testY = create_dataset(test, look_back)  # 测试输入输出
 trainX = numpy.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
 testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
 
-# 建立LSTM模型
-model = Sequential()
-model.add(LSTM(11, input_shape=(1, look_back)))  # 隐层11个神经元 （可以断调整此参数提高预测精度）
-model.add(Dense(1))
-model.compile(loss='mean_squared_error', optimizer='adam')  # 评价函数mse，优化器adam
-model.fit(trainX, trainY, epochs=10000, batch_size=100, verbose=2)  # 100次迭代
+
+# load model
+model=load_model('my_model.h5')
 trainPredict = model.predict(trainX)
 testPredict = model.predict(testX)
 
-# save the model
-# model.save_weights("my_model_weights.h5") # only save the weight
-model.save('my_model.h5')
+
 # 数据反归一化
 trainPredict = scaler.inverse_transform(trainPredict)
 trainY = scaler.inverse_transform([trainY])
@@ -101,23 +94,6 @@ print('Train Score: %.5f RMSE' % (trainScore))
 testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
 print('Test Score: %.5f RMSE' % (testScore))
 
-# compare=cal_the_return(testPredict,testY)
-# print('index    return={};\nStrategy return={}'.format(compare['acc_y'].iloc[-1],compare['acc_p0'].iloc[-1]))
-# # compare[['acc_p0','acc_p1','acc_p2','acc_p3','acc_p4','acc_p5','acc_y']].plot()
-# plt.figure(figsize=(20, 6))
-# l1, = plt.plot(compare['acc_y'], color='red', linewidth=5)
-# l2, = plt.plot(compare['acc_p0'], color='b', linewidth=2)
-# l3, = plt.plot(compare['acc_p5'], color='g', linewidth=2)
-# plt.ylabel('Height m')
-# plt.legend([l1, l2, l3], ('GEI', 'S0', 'S1'), loc='best')
-# plt.title('LSTM Gait Prediction')
-#
-# compare=cal_the_return(trainPredict,trainY)
-# compare[['acc_p0','acc_y']].plot()
-# plt.show()
-
-
-
 
 trainPredictPlot = numpy.empty_like(dataset)
 trainPredictPlot[:, :] = numpy.nan
@@ -128,8 +104,8 @@ testPredictPlot = numpy.empty_like(dataset)
 testPredictPlot[:, :] = numpy.nan
 testPredictPlot[len(trainPredict) + (look_back * 2) + 1:len(dataset) - 1, :] = testPredict
 
-# plot baseline and predictions
 
+# plot baseline and predictions
 plt.figure(figsize=(20, 6))
 l1, = plt.plot(scaler.inverse_transform(dataset), color='red', linewidth=5, linestyle='--')
 l2, = plt.plot(trainPredictPlot, color='k', linewidth=4.5)
@@ -137,4 +113,5 @@ l3, = plt.plot(testPredictPlot, color='g', linewidth=4.5)
 plt.ylabel('Height m')
 plt.legend([l1, l2, l3], ('raw-data', 'true-values', 'pre-values'), loc='best')
 plt.title('LSTM Gait Prediction')
+plt.savefig('LSTM Gait Prediction.svg',format='svg')
 plt.show()
