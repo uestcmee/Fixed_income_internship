@@ -1,6 +1,6 @@
 from STG_Return import StgReturn
 from DrawHeatMap import DrawPic
-
+from InitSQL import InitSQL
 
 class BackTest:
 
@@ -15,8 +15,9 @@ class BackTest:
                 # 输出收益率文件到./outfile文件夹
                 StgReturn('./data/CSI.csv',l_fac,s_fac,year_range=self.year_range)
                 # 使用文件结果绘制热力图
-                DrawPic(cumflag=1,l_fac=l_fac,s_fac=s_fac)
+                # DrawPic(cumflag=1,l_fac=l_fac,s_fac=s_fac)
 
 
 if __name__ == '__main__':
+    InitSQL('CSI.db')
     BackTest()
