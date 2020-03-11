@@ -61,7 +61,7 @@ class StgReturn:
                 self.ret_list[str(long) + '_' + str(short)] = y5_r
                 for index,year in enumerate(self.time_list):
                     year=int(year[:4])
-                    self.ToSQL(['\'000905\'',self.l_fac,self.s_fac,long,short,self.year_range[0],year,y5_r[index]])
+                    self.ToSQL(['\'000905\'',self.l_fac,self.s_fac,long,short,self.year_range[0]-1,year,y5_r[index]])
                 print('{}_{}:{}'.format(long, short, y5_r))
         # 取消了csv形式的输出
         # self.output(out_file=str(self.l_fac) + '_' + str(self.s_fac) + '.csv')

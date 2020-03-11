@@ -19,5 +19,5 @@ class BackTest:
 
 
 if __name__ == '__main__':
-    InitSQL('CSI.db')
+    InitSQL('CSI.db').InitialSQL()
     BackTest()
