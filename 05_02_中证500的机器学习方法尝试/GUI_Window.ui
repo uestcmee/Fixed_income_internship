@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>819</width>
+    <height>929</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>190</y>
+     <width>501</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="1">
+     <widget class="QComboBox" name="comboBox_4">
+      <item>
+       <property name="text">
+        <string>SGD</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RMSprop</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Adagrad</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Adadelta</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Adam</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Adamax</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Nadam</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>损失函数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>选择数据文件</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>优化器</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>模型名称</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QComboBox" name="comboBox_3"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="text">
+       <string>MyModel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QComboBox" name="comboBox_5">
+      <item>
+       <property name="text">
+        <string>mean_squared_error</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mean_absolute_error</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mean_absolute_percentage_error</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mean_squared_logarithmic_error</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>squared_hinge</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>hinge</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>categorical_hinge</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>logcosh</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>训练次数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QComboBox" name="comboBox">
+      <item>
+       <property name="text">
+        <string>5000</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>10000</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>20000</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>50000</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>210</y>
+     <width>81</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>检测</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="title">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>50</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>LSTM模型</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>600</y>
+     <width>501</width>
+     <height>161</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>560</y>
+     <width>108</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>程序输出</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>120</y>
+     <width>231</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>训练新的模型</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>810</y>
+     <width>150</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>开始训练</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
