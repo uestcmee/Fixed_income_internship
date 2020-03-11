@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>LSTM模型</title>
+    <link href="../static/css/test.css" rel="stylesheet"></head>
+<body>
+<!--面板-->
+<div id="panel">
+    <!--面板的头部-->
+    <div class="panel-top">
+        <h2>LSTM模型训练器</h2>
+    </div>    <!--面板的主要内容-->
+    <div class="panel-content">
+
+        <div class="int">
+            <b >输入模型名</b>
+            <input type="text" placeholder="模型名">
+        </div>
+
+
+        <div class="choose">
+            <b >选择数据文件</b>
+            <select   onChange="ShowToText(); "  >
+                <option value="1">1.csv</option>
+                <option value="2">2.csv</option>
+            </select><br>
+
+        </div>
+        <div class="choose">
+            <b >损失函数</b>
+            <select   onChange="ShowToText(); "  >
+                <option value="1">mse</option>
+                <option value="2">mae</option>
+            </select><br>
+
+        </div>
+        <div class="choose">
+            <b >训练次数</b>
+            <select  onChange="ShowToText(); "  >
+                <option value="1">1000</option>
+                <option value="2">2000</option>
+
+            </select><br>
+
+        </div>
+
+        <!--配置信息-->
+        <div class="setting">
+            <a  class="train_new_model">
+                <input type="checkbox">训练新的模型</a>
+        </div>
+        <div class="start">
+            <button onclick="alert('start!')">开始训练</button>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
