@@ -5,7 +5,7 @@ body {
 }
 
 #title {
-    position: absolute; /* ç»å¯¹å®šä½ */
+    position: absolute; /* 绝对定位 */
     width: 40%;
     height: 10%;
     top: 10px;
@@ -19,7 +19,7 @@ body {
 }
 
 #time {
-    position: absolute; /* ç»å¯¹å®šä½ */
+    position: absolute; /* 绝对定位 */
     /*width: 30%;*/
     height: 10%;
     top: 5%;
@@ -28,7 +28,7 @@ body {
     font-size: 20px;
 }
 #center1 {
-    position: absolute; /* ç»å¯¹å®šä½ */
+    position: absolute; /* 绝对定位 */
     width: 40%;
     height: 30%;
     top: 10%;
@@ -36,38 +36,59 @@ body {
     /*background: beige;*/
     background-color: #333333;
 }
+
+
 #lookback {
-    position: absolute; /* ç»å¯¹å®šä½ */
+    position: absolute; /* 绝对定位 */
     margin: auto;
     width: 60%;
     height: 60%;
     top: 40%;
     left: 20%;
-    background: beige;
+    /*background: beige;*/
+    background-color: #333333;
+
 }
 
 .select {
     margin-top:10px;
+    height:25px;
     width: 25%;
     float: left;
     display: flex;
     align-content: center;
     justify-content: center;
     color: gold;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .txt {
     width: 25%;
     float: left;
-    font-family: "å¹¼åœ†";
+    font-family: "幼圆";
     display: flex;
     color: white;
     align-content: center;
     justify-content: center;
 }
 
+#submit{
+    margin-top: 70px;
+    display: flex;
+    color: white;
+    align-content: center;
+    justify-content: center;
+
+}
+
 .txt h2 {
     margin: 0;
 }
 
+#wait{
+    margin-top: 7px;
+    display: flex;
+    color: white;
+    align-content: center;
+    justify-content: center;
+}
