@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
  LSTM prediction
-@author: ljq
+为了方便qt的相关文件调用写的一个class
 """
 # 导入库函数
 import numpy

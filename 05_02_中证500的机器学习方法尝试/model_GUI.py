@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from UI_Window import Ui_Dialog
-# 失败！！
+# 失败！！暂时用不了，由于UI_window的结构的特殊，参数传不出来，很气
 
 class MyWindow(QMainWindow, Ui_Dialog):
     def __init__(self, parent=None):

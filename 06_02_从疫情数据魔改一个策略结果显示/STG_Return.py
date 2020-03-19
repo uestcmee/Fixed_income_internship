@@ -4,8 +4,8 @@ file='./data/CSI.csv'
 from LoadFile import load_file
 import numpy as np
 
-class StgReturn:
-    def __init__(self,file_name=None,l_fac=1.0,s_fac=1.0,year_range=range(2006,2021),lma = 20,sma =9):
+class StgReturn():
+    def __init__(self,file_name=None,l_fac=1.0,s_fac=1.06,year_range=range(2006,2021),lma = 14,sma =3):
         # 在此修改长短期均线长度
         # ========================
         self.lma = lma  # 长期均线选择
@@ -23,12 +23,12 @@ class StgReturn:
         # MACD指标选择的长短期为12,26
         self.l_fac=l_fac
         self.s_fac=s_fac
-        self.main_loop()
+        # self.main_loop()
 
 
     def main_loop(self):
         # ======开始进入收益率计算======
-        stg_r,idx_r = self.cal_ma(self.lma, self.sma, l_fac=self.l_fac, s_fac=self.s_fac)
+        stg_r,idx_r = self.cal_ma()
         df=pd.DataFrame()
         df.insert(0,'stg',np.array(stg_r))
         df.insert(1,'idx',np.array(idx_r))
@@ -40,11 +40,11 @@ class StgReturn:
 
 
 
-    def cal_ma(self,long=20,short=5,l_fac=1.03,s_fac=1.03):
-        # long为长的均线，short为短的均线
+    def cal_ma(self):
+        # self.lma为长的均线，self.sma为短的均线
         # 初始化收盘价dataframe
-        self.close_data['20avg']=self.close_data['close'].rolling(window=long).mean().shift()
-        self.close_data['5avg']=self.close_data['close'].rolling(window=short).mean().shift()
+        self.close_data['20avg']=self.close_data['close'].rolling(window=self.lma).mean().shift()
+        self.close_data['5avg']=self.close_data['close'].rolling(window=self.sma).mean().shift()
         # print(self.close_data)
 
         # pandas 的索引实在是太慢了，直接用lastday记录上一天的
@@ -60,7 +60,7 @@ class StgReturn:
             [close_p,earning,avg20,avg5]=self.close_data.loc[day][:4]
 
             # 主要的判断是否持有的语句
-            if close_p>avg20*l_fac and close_p<avg5*s_fac:
+            if close_p>avg20*self.l_fac and close_p<avg5*self.s_fac:
                 hold_flag=1
             else:
                 hold_flag=0
@@ -83,4 +83,9 @@ class StgReturn:
 
 
 if __name__ == '__main__':
-    StgReturn('./data/CSI.csv')
+    df=StgReturn(file_name='./data/CSI.csv').main_loop()
+    print(df)
+    # import matplotlib.pyplot as plt
+    # df.plot()
+    # plt.show()
+    df.to_csv('for ppt.csv')

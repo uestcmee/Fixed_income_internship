@@ -16,10 +16,10 @@ from keras.layers import LSTM
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from LoadFile import load_file
-
-TRAIN_FLAG=1 # 如果是要训练模型，选择1，模型保存到my_model_.h5
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 DATA_FILE='./data/CSI.csv'
-MODEL_NAME='modelPPT'
+MODEL_NAME='my_model'
 
 
 
@@ -91,24 +91,21 @@ testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
 # def mean_squared_error(y_true, y_pred):
 #     return K.mean(K.square(y_pred - y_true), axis=-1)
 
-# 建立LSTM模型
-model = Sequential()
-model.add(LSTM(11, input_shape=(1, look_back)))  # 隐层11个神经元 （可以断调整此参数提高预测精度）
-model.add(Dense(1))
-model.compile(loss='mse', optimizer='adam')  # 评价函数mse，优化器adam
-history=model.fit(trainX, trainY, epochs=1000, batch_size=100, verbose=2)  # 1000次迭代
 
-# 绘制损失函数值
-print(history.history)
-plt.plot(history.history['loss'])
-plt.title('Model Loss')
-plt.ylabel('Loss')
-plt.xlabel('Epoch')
-plt.show()
-# save the model
-# model.save_weights("my_model_weights.h5") # only save the weight
-model.save('./model_file/{}.h5'.format(MODEL_NAME))
+if TRAIN_FLAG:
+    # 建立LSTM模型
+    model = Sequential()
+    model.add(LSTM(11, input_shape=(1, look_back)))  # 隐层11个神经元 （可以断调整此参数提高预测精度）
+    model.add(Dense(1))
+    model.compile(loss='mse', optimizer='adam')  # 评价函数mse，优化器adam
+    model.fit(trainX, trainY, epochs=20000, batch_size=100, verbose=2)  # 100次迭代
 
+    # save the model
+    # model.save_weights("my_model_weights.h5") # only save the weight
+    model.save('./model_file/{}.h5'.format(MODEL_NAME))
+
+else:
+    model=load_model('./model_file/{}.h5'.format(MODEL_NAME))
 
 trainPredict = model.predict(trainX)
 testPredict = model.predict(testX)
@@ -147,20 +144,7 @@ plt.legend([l1, l2, l3], ('CSI500', 'S0', 'S1'), loc='best')
 plt.title('LSTM Prediction--{}'.format(MODEL_NAME))
 plt.savefig('./img/收益率曲线_{}.svg'.format(MODEL_NAME),format='svg')
 
-# compare=cal_the_return(trainPredict,trainY)
-# compare[['acc_p0','acc_y']].plot()
+
 
 plt.show()
 
-
-
-# plot baseline and predictions
-# plt.figure(figsize=(20, 6))
-# l1, = plt.plot(scaler.inverse_transform(dataset), color='red', linewidth=5, linestyle='--')
-# l2, = plt.plot(trainPredictPlot, color='k', linewidth=4.5)
-# l3, = plt.plot(testPredictPlot, color='g', linewidth=4.5)
-# plt.ylabel('Height m')
-# plt.legend([l1, l2, l3], ('raw-data', 'true-values', 'pre-values'), loc='best')
-# plt.title('LSTM Gait Prediction')
-# plt.savefig('LSTM Gait Prediction.svg',format='svg')
-# plt.show()

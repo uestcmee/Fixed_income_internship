@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
  LSTM prediction
-@author: ljq
 """
 # 导入库函数
 import numpy
@@ -15,23 +14,19 @@ from keras.layers import Dense
 from keras.layers import LSTM
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
-from LoadFile import load_file
+from LoadFile_2 import load_file
 
 TRAIN_FLAG=1 # 如果是要训练模型，选择1，模型保存到my_model_.h5
 DATA_FILE='./data/CSI.csv'
-MODEL_NAME='modelPPT'
+MODEL_NAME='my_model_2d'
 
 
 
 
 # 读取数据
 close_earning=load_file(DATA_FILE).read_file()
-dataset=close_earning['earning'].values.reshape(-1,1)
-# data = read_csv('r.csv')  # csv文件 n*1 ,n代表样本数，反应时间序列，1维数据
-#
-# values1 = data.values;
-# dataset = values1[:, 0].reshape(-1, 1)  # 注意将一维数组，转化为2维数组
-# dataset = dataset.astype('float32')  # 将数据转化为32位浮点型，防止0数据
+close_earning.drop(close_earning.index[0],inplace=True)
+dataset=close_earning[['earning','turnover']].values.reshape(-1,2)
 
 def cal_the_return(testPredict,testY):
     compare=pd.DataFrame(testPredict,)
@@ -62,14 +57,13 @@ def cal_the_return(testPredict,testY):
 def create_dataset(dataset, look_back=1):  # 后一个数据和前look_back个数据有关系
     dataX, dataY = [], []
     for i in range(len(dataset) - look_back - 1):
-        a = dataset[i:(i + look_back), 0]
+        a = dataset[i:(i + look_back)]
         dataX.append(a)  # .apeend方法追加元素
-        dataY.append(dataset[i + look_back, 0])
+        dataY.append(dataset[i + look_back])
     return numpy.array(dataX), numpy.array(dataY)  # 生成输入数据和输出数据
 
 
 numpy.random.seed(7)  # 随机数生成时算法所用开始的整数值
-
 # normalize the dataset
 scaler = MinMaxScaler(feature_range=(0, 1))  # 归一化0-1
 dataset = scaler.fit_transform(dataset)
@@ -82,37 +76,45 @@ train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]  # �
 look_back = 20
 trainX, trainY = create_dataset(train, look_back)  # 训练输入输出
 testX, testY = create_dataset(test, look_back)  # 测试输入输出
-
+print(testY)
 # reshape input to be [samples, time steps, features]#注意转化数据维数
-trainX = numpy.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
-testX = numpy.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
-
-
+trainX = numpy.reshape(trainX, (trainX.shape[0], 2, trainX.shape[1]))
+testX = numpy.reshape(testX, (testX.shape[0], 2, testX.shape[1]))
+print(testX.shape)
 # def mean_squared_error(y_true, y_pred):
 #     return K.mean(K.square(y_pred - y_true), axis=-1)
 
-# 建立LSTM模型
-model = Sequential()
-model.add(LSTM(11, input_shape=(1, look_back)))  # 隐层11个神经元 （可以断调整此参数提高预测精度）
-model.add(Dense(1))
-model.compile(loss='mse', optimizer='adam')  # 评价函数mse，优化器adam
-history=model.fit(trainX, trainY, epochs=1000, batch_size=100, verbose=2)  # 1000次迭代
 
-# 绘制损失函数值
-print(history.history)
-plt.plot(history.history['loss'])
-plt.title('Model Loss')
-plt.ylabel('Loss')
-plt.xlabel('Epoch')
-plt.show()
-# save the model
-# model.save_weights("my_model_weights.h5") # only save the weight
-model.save('./model_file/{}.h5'.format(MODEL_NAME))
+if TRAIN_FLAG:
+    # 建立LSTM模型
+    model = Sequential()
+    model.add(LSTM(11, input_shape=(2, look_back)))  # 隐层11个神经元 （可以断调整此参数提高预测精度）
+    model.add(Dense(2))
+    model.compile(loss='mse', optimizer='adam')  # 评价函数mse，优化器adam
+    model.fit(trainX, trainY, epochs=200, batch_size=100, verbose=2)  # 100次迭代
 
+    # save the model
+    # model.save_weights("my_model_weights.h5") # only save the weight
+    model.save('./model_file/{}.h5'.format(MODEL_NAME))
+
+else:
+    model=load_model('./model_file/{}.h5'.format(MODEL_NAME))
 
 trainPredict = model.predict(trainX)
 testPredict = model.predict(testX)
 # 数据反归一化
+# print('Pre:',trainPredict)
+print('test:',testPredict)
+print(trainPredict.shape)
+print(trainY.shape)
+trainPredict=trainPredict.reshape(trainPredict.shape[0],2)
+trainY=trainY.reshape(trainY.shape[0],2)
+testPredict=testPredict.reshape(testPredict.shape[0],2)
+testY=testY.reshape(testY.shape[0],2)
+
+print(scaler.data_max_)
+print(trainPredict.shape)
+print(trainY.shape)
 trainPredict = scaler.inverse_transform(trainPredict)
 trainY = scaler.inverse_transform([trainY])
 testPredict = scaler.inverse_transform(testPredict)
@@ -152,15 +154,3 @@ plt.savefig('./img/收益率曲线_{}.svg'.format(MODEL_NAME),format='svg')
 
 plt.show()
 
-
-
-# plot baseline and predictions
-# plt.figure(figsize=(20, 6))
-# l1, = plt.plot(scaler.inverse_transform(dataset), color='red', linewidth=5, linestyle='--')
-# l2, = plt.plot(trainPredictPlot, color='k', linewidth=4.5)
-# l3, = plt.plot(testPredictPlot, color='g', linewidth=4.5)
-# plt.ylabel('Height m')
-# plt.legend([l1, l2, l3], ('raw-data', 'true-values', 'pre-values'), loc='best')
-# plt.title('LSTM Gait Prediction')
-# plt.savefig('LSTM Gait Prediction.svg',format='svg')
-# plt.show()
