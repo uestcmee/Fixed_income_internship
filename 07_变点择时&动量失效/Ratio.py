@@ -44,11 +44,16 @@ class ratio:
                 [ir, float((strategy_cum).tail(1)), return_year, return_avg, volatility, profit_max, loss_max,
                  num_of_up, num_of_down, win_rate, gain_of_up, loss_of_down, profit_loss_ratio, drawdown],
                 columns=[data.name],
-                index=['Information Ratio', 'Cumulative Return', 'Annualised Return', 'Average return',
-                       'Annualised Volatility', 'Maximum Daily Profit',
-                       'Maximum Daily Loss', 'Number of Up Periods', 'Number of Down Periods', 'Win Rate',
-                       'Avg Gain in Up Periods',
-                       'Avg Loss in Down Periods', 'Profit and Loss Ratio', 'Maximum Drawdown'])
+                # index=['Information Ratio', 'Cumulative Return', 'Annualised Return', 'Average return',
+                #        'Annualised Volatility', 'Maximum Daily Profit',
+                #        'Maximum Daily Loss', 'Number of Up Periods', 'Number of Down Periods', 'Win Rate',
+                #        'Avg Gain in Up Periods',
+                #        'Avg Loss in Down Periods', 'Profit and Loss Ratio', 'Maximum Drawdown'])
+                index=['信息比率', '累计收益率', '年化收益率', '每日收益率',
+                       '年化波动率', '最大每日收益',
+                       '最大每日损失', '上涨天数', '下跌天数', '胜率',
+                       '上涨时平均每日收益率',
+                       '下跌时平均每日收益率', '盈亏比', '最大回撤'])
             res.append(tmp)
         # 返回拼接好的DataFrame
         return pd.concat(res, axis=1, join='inner')
@@ -58,3 +63,5 @@ if __name__ == '__main__':
     result = ratio().cal_ratio(pd.DataFrame(strategy_return)).round(4)
     result.columns = ['strategy_return']
     print(result)
+    result=pd.DataFrame()
+    result.to
