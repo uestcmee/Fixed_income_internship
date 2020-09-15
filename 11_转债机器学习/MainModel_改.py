@@ -15,9 +15,9 @@ from keras.layers import LSTM
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from LoadFile_2 import load_file
-import sys
 
 TRAIN_FLAG=1 # 如果是要训练模型，选择1，模型保存到my_model_.h5
+
 DATA_FILE='./data/CSI.csv'
 MODEL_NAME='my_model_2d'
 
@@ -28,8 +28,7 @@ MODEL_NAME='my_model_2d'
 close_earning=load_file(DATA_FILE).read_file()
 close_earning.drop(close_earning.index[0],inplace=True)
 dataset=close_earning[['earning','turnover']].values.reshape(-1,2)
-print(dataset)
-sys.exit(1)
+
 def cal_the_return(testPredict,testY):
     compare=pd.DataFrame(testPredict,)
     compare['testy']=testY[0]
@@ -101,58 +100,58 @@ if TRAIN_FLAG:
 
 else:
     model=load_model('./model_file/{}.h5'.format(MODEL_NAME))
-
-trainPredict = model.predict(trainX)
-testPredict = model.predict(testX)
-# 数据反归一化
-# print('Pre:',trainPredict)
-print('test:',testPredict)
-print(trainPredict.shape)
-print(trainY.shape)
-trainPredict=trainPredict.reshape(trainPredict.shape[0],2)
-trainY=trainY.reshape(trainY.shape[0],2)
-testPredict=testPredict.reshape(testPredict.shape[0],2)
-testY=testY.reshape(testY.shape[0],2)
-
-print(scaler.data_max_)
-print(trainPredict.shape)
-print(trainY.shape)
-trainPredict = scaler.inverse_transform(trainPredict)
-trainY = scaler.inverse_transform([trainY])
-testPredict = scaler.inverse_transform(testPredict)
-testY = scaler.inverse_transform([testY])
-
-
-trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:, 0]))
-print('Train Score: %.5f RMSE' % (trainScore))
-testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
-print('Test Score: %.5f RMSE' % (testScore))
-
-
-trainPredictPlot = numpy.empty_like(dataset)
-trainPredictPlot[:, :] = numpy.nan
-trainPredictPlot[look_back:len(trainPredict) + look_back, :] = trainPredict
-
-# shift test predictions for plotting
-testPredictPlot = numpy.empty_like(dataset)
-testPredictPlot[:, :] = numpy.nan
-testPredictPlot[len(trainPredict) + (look_back * 2) + 1:len(dataset) - 1, :] = testPredict
-
-
-compare=cal_the_return(testPredict,testY)
-print('index    return={};\nStrategy return={}'.format(compare['acc_y'].iloc[-1],compare['acc_p0'].iloc[-1]))
-# compare[['acc_p0','acc_p1','acc_p2','acc_p3','acc_p4','acc_p5','acc_y']].plot()
-plt.figure(figsize=(20, 6))
-l1, = plt.plot(compare['acc_y'], color='red', linewidth=5)
-l2, = plt.plot(compare['acc_p0'], color='b', linewidth=2)
-l3, = plt.plot(compare['acc_p5'], color='g', linewidth=2)
-plt.ylabel('Height m')
-plt.legend([l1, l2, l3], ('CSI500', 'S0', 'S1'), loc='best')
-plt.title('LSTM Prediction--{}'.format(MODEL_NAME))
-plt.savefig('./img/收益率曲线_{}.svg'.format(MODEL_NAME),format='svg')
-
-# compare=cal_the_return(trainPredict,trainY)
-# compare[['acc_p0','acc_y']].plot()
-
-plt.show()
-
+#
+# trainPredict = model.predict(trainX)
+# testPredict = model.predict(testX)
+# # 数据反归一化
+# # print('Pre:',trainPredict)
+# print('test:',testPredict)
+# print(trainPredict.shape)
+# print(trainY.shape)
+# trainPredict=trainPredict.reshape(trainPredict.shape[0],2)
+# trainY=trainY.reshape(trainY.shape[0],2)
+# testPredict=testPredict.reshape(testPredict.shape[0],2)
+# testY=testY.reshape(testY.shape[0],2)
+#
+# print(scaler.data_max_)
+# print(trainPredict.shape)
+# print(trainY.shape)
+# trainPredict = scaler.inverse_transform(trainPredict)
+# trainY = scaler.inverse_transform([trainY])
+# testPredict = scaler.inverse_transform(testPredict)
+# testY = scaler.inverse_transform([testY])
+#
+#
+# trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:, 0]))
+# print('Train Score: %.5f RMSE' % (trainScore))
+# testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
+# print('Test Score: %.5f RMSE' % (testScore))
+#
+#
+# trainPredictPlot = numpy.empty_like(dataset)
+# trainPredictPlot[:, :] = numpy.nan
+# trainPredictPlot[look_back:len(trainPredict) + look_back, :] = trainPredict
+#
+# # shift test predictions for plotting
+# testPredictPlot = numpy.empty_like(dataset)
+# testPredictPlot[:, :] = numpy.nan
+# testPredictPlot[len(trainPredict) + (look_back * 2) + 1:len(dataset) - 1, :] = testPredict
+#
+#
+# compare=cal_the_return(testPredict,testY)
+# print('index    return={};\nStrategy return={}'.format(compare['acc_y'].iloc[-1],compare['acc_p0'].iloc[-1]))
+# # compare[['acc_p0','acc_p1','acc_p2','acc_p3','acc_p4','acc_p5','acc_y']].plot()
+# plt.figure(figsize=(20, 6))
+# l1, = plt.plot(compare['acc_y'], color='red', linewidth=5)
+# l2, = plt.plot(compare['acc_p0'], color='b', linewidth=2)
+# l3, = plt.plot(compare['acc_p5'], color='g', linewidth=2)
+# plt.ylabel('Height m')
+# plt.legend([l1, l2, l3], ('CSI500', 'S0', 'S1'), loc='best')
+# plt.title('LSTM Prediction--{}'.format(MODEL_NAME))
+# plt.savefig('./img/收益率曲线_{}.svg'.format(MODEL_NAME),format='svg')
+#
+# # compare=cal_the_return(trainPredict,trainY)
+# # compare[['acc_p0','acc_y']].plot()
+#
+# plt.show()
+#

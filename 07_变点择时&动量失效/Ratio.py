@@ -63,5 +63,3 @@ if __name__ == '__main__':
     result = ratio().cal_ratio(pd.DataFrame(strategy_return)).round(4)
     result.columns = ['strategy_return']
     print(result)
-    result=pd.DataFrame()
-    result.to
