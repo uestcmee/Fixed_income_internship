@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "D:/PycharmProjects/Fixed_income_internship/16_记账式国债发行/test.py", line 44, in main
+    cW.SetAsForegroundWindow()
+  File "D:/PycharmProjects/Fixed_income_internship/16_记账式国债发行/test.py", line 11, in SetAsForegroundWindow
+    win32gui.SetForegroundWindow(self._hwnd)
+pywintypes.error: (1400, 'SetForegroundWindow', '无效的窗口句柄。')
