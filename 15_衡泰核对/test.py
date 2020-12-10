@@ -1,6 +1,4 @@
-import sys
-
-if len(sys.argv)>1:
-
-    print(sys.argv)
-print(sys.argv)
+for i in range(1,10):
+    if 7**512>i**768:
+        print(i)
+        
