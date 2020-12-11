@@ -1,4 +1,4 @@
 @ echo off
 
-start python ./0_bond_deal.py
-start python ./0_bond_ipo.py
+start pythonw ./a_bond_deal.py
+start pythonw ./a_bond_issue.py

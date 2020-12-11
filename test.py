@@ -1,4 +1,13 @@
-import tkinter
+class a:
+    def __init__(self):
+        print('init')
+    def fun(self):
+        print('fun')
 
-interp = tkinter.Tcl()
-interp.eval('puts "Hello Tcl!"')
+
+c=a()
+for i in range(5):
+    c.fun()
+
+for i in range(5):
+    a().fun()

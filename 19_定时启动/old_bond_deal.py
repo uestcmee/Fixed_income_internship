@@ -147,14 +147,15 @@ class Timing:
                 func()
                 self.log_event('已运行完成')
                 # 延时5s
-                self.sleep(1)
+                self.sleep(wait_time)
                 self.no_need_window=True
             else: # 非所需时间
                 self.no_need_window = False  # 重置，下次还是需要窗口
-                print('\r时间未到'.format(date_time))
+                print('  时间未到'.format(date_time),end='')
                 self.log_event('时间未到')
-                self.sleep(1) # 延时1s
+                self.sleep(wait_time) # 延时1s
 
 if __name__ == '__main__':
+    print('成交数据每日爬虫')
     # 工作日获取债券信息
     Timing().main_loop(func=fetch_bond_info,wait_time=5,rule='weekday<5 and tim>"20:11:00"')
