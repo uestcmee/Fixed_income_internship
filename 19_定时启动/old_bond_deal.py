@@ -158,4 +158,4 @@ class Timing:
 if __name__ == '__main__':
     print('成交数据每日爬虫')
     # 工作日获取债券信息
-    Timing().main_loop(func=fetch_bond_info,wait_time=5,rule='weekday<5 and tim>"20:11:00"')
+    Timing().main_loop(func=fetch_bond_info,wait_time=1,rule='weekday<5 and tim>"20:11:00"')
