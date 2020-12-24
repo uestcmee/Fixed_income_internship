@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import time,datetime
 import webbrowser
 import threading
-import win32api,win32con
+# import win32api,win32con
 
 import gc
 import traceback # 不用这个，输出太多了
@@ -20,12 +20,28 @@ from tkinter import *
 
 class BondRemind:
     def __init__(self):
+        """
+        初始化程序
+        """
+        # 打开界面
+        init_t = threading.Thread(target=self.alert, args=('国债发行检测',))
+        init_t.start()
+        self.window_opend=True # 判断窗口是否打开
         self.info_0 = self.get_url()
-        if self.info_0!=[]:
-            print(str(datetime.datetime.now().time())[:8])
-            for i in self.info_0:
-                print(i[0])
-        self.window_opend=False
+        self.new_msg_process(info_now=self.info_0,init=True) # 初始数据传入界面
+        print(str(datetime.datetime.now().time())[:8])
+        for i in self.info_0:
+            print(i[0])
+
+    def restore(self):
+        """
+        重置文字
+        :return:
+        """
+        for box in ['name', 'term', 'amount','date']:
+            self.window_info[box].delete(0,END)
+        info_0 = self.get_url()
+        self.new_msg_process(info_now=info_0,init=True) # 初始数据传入界面
 
 
     def get_detail(self,url):
@@ -50,12 +66,7 @@ class BondRemind:
             # if hasattr(self,'my_th'):
             #     self.my_th.
         except Exception as e :
-            # print(e)
             print('无法获得页面内容')
-            if not hasattr(self,'my_th'):
-                self.my_th=threading.Thread(target=self.alert,args=('无法更新内容',[['无法更新列表，请检查网页链接','','']],))
-                # self.alert('无法更新内容',details=['无法更新列表，请检查网页链接',])
-                self.my_th.start()
             return []
         text=res.content
         soup=BeautifulSoup(text,'lxml')
@@ -87,22 +98,30 @@ class BondRemind:
         window.title(title)
         window.resizable(0, 0)  # 设置窗口大小不可变
         # 标签
-        Label(window,text='名称') .grid(row=0,column=2,columnspan=3)
+        # Label(window,text='名称') .grid(row=0,column=4,columnspan=1)
         Label(window,text='发行期限',width=10) .grid(row=0,column=5)
         Label(window,text='发行量') .grid(row=0,column=6)
+        Label(window,text='日期') .grid(row=0,column=7)
+
+        Button(window,text='测试',command=lambda :self.main_fun(True),width=10).grid(row=0,column=2,sticky=W)
+        Button(window,text='重置',command=lambda :self.restore(),width=10).grid(row=0,column=3,sticky=W)
+
         # 时间框
         time_box=Listbox(window,height=1)
         time_box.grid(row=0,column=0,columnspan=2,sticky=W)
 
         # 公告名
-        name=Listbox(window,width=55, height=5)
+        name=Listbox(window,width=55, height=7)
         name.grid(row=1,column=0,columnspan=5,rowspan=5)
         # 公告期限
-        term_list=Listbox(window,width=10, height=5)
+        term_list=Listbox(window,width=10, height=7)
         term_list.grid(row=1,column=5,rowspan=5,sticky=S)
         # 公告发行量
-        amount_list=Listbox(window,width=10, height=5)
+        amount_list=Listbox(window,width=10, height=7)
         amount_list.grid(row=1,column=6,rowspan=5)
+        # 公告日期
+        date=Listbox(window,width=10, height=7)
+        date.grid(row=1,column=7,rowspan=5)
 
         # 运行窗口
         self.window_info={
@@ -110,7 +129,9 @@ class BondRemind:
             'time_box':time_box,
             'name':name,
             'term':term_list,
-            'amount':amount_list
+            'amount':amount_list,
+            'date': date
+
         }
         window.mainloop()
         window.quit()
@@ -119,58 +140,101 @@ class BondRemind:
         print('关闭完成')
         self.window_opend=False
 
+    def insert_info(self,info:list,color=None):
+        """
+        用来写入界面内容，传入list
+        :param info:
+        :param color:
+        :return:
+        """
+        self.window_info['name'].insert(0, info[0])
+        self.window_info['term'].insert(0, info[1])
+        self.window_info['amount'].insert(0, info[2])
+        self.window_info['date'].insert(0, info[3])
+        if color:
+            self.window_info['name'].itemconfig(0, {'bg': color})
+        return 0
 
-    def new_msg_process(self,info_now):
-        change_num = info_now.index(self.info_0[0])  # 新的里面找原有的在第几位
+    def new_msg_process(self,info_now,init=False):
+        error_notice='获取内容失败，请检查网络连接'
+        if info_now == []:
+            if self.window_info['name'].get(0) != error_notice:
+                print('无法更新公告列表')
+                self.insert_info([error_notice,' ',' ',' '] , color = '#F00056')
+
+            return 1
+
+        if info_now != [] and self.window_info['name'].get(0) == error_notice:
+            self.insert_info(['已恢复连接', ' ', ' ', ' '], color='#90EE90')
+
+            if self.window_info['name'].get(2) == '':  # 一开界面的时候就断网的情况
+                self.info_0 = self.get_url()
+                if self.info_0 != []:
+                    self.new_msg_process(info_now=self.info_0, init=True)  # 初始数据传入界面
+                    print(str(datetime.datetime.now().time())[:8])
+                    for i in self.info_0:
+                        print(i[0])
+
+
+        if init: # 如果是初始化
+            change_num=len(info_now)
+        else:
+            change_num = info_now.index(self.info_0[0])  # 新的里面找原有的在第几位
         print('有{}条新消息'.format(change_num))
         amount_term = []
+
         for i in range(change_num):
             details = self.get_detail(info_now[i][2]) # 获取网页详情
             print(info_now[i][2])
             term = re.findall('\d+年期|(?<=期限)\d+天', details)[0] # 期限
             term=str(term).replace('{}','')
-            amount = re.findall('(总额\d+亿元)', details)[0] # 发行量
+            amount = re.findall('(?<=总额)(\d+亿元)', details)[0] # 发行量
             title = info_now[i][0][8:-10] # 标题
+            date = info_now[i][0][-10:] # 公告发布日期
 
-            amount_term.append([title, term, amount])
+            amount_term.append([title, term, amount,date])
             url = info_now[i][2]
-            webbrowser.open(url)  # 打开浏览器
+            if not init: # 如果不是初始化
+                webbrowser.open(url)  # 打开浏览器
 
         # 新消息提醒
-        head = '共有{}个国债发行'.format(change_num)
+        if not init :
+            self.window_info['window'].wm_attributes('-topmost',1)# 置顶显示
 
-        self.window_info['window'].wm_attributes('-topmost',1)# 置顶显示
-        for one in amount_term:
-            self.window_info['name'].insert(END,one[0])
-            self.window_info['term'].insert(END,one[1])
-            self.window_info['amount'].insert(END,one[2])
+        for one in amount_term[::-1]: # 换向，以便按顺序插入
+            self.insert_info(one)
 
-
+            if not init:
+                for box in ['name','term','amount','date']:
+                    self.window_info[box].itemconfig(0, {'bg': '#FF4D00'})
 
     # 主要对比函数，需要传入对比基准
-    def main_fun(self):
-        datet=str(datetime.datetime.now())[:19]
-        if self.window_opend==False:
-            time.sleep(1)
-            init_t = threading.Thread(target=self.alert, args=('国债发行检测',))
-            init_t.start()
-            self.window_opend=True
-        else:
-            self.window_info['time_box'].delete(END)
-            self.window_info['time_box'].insert(END,datet)
-
-
+    def main_fun(self,test=False):
         try:
             info_now = self.get_url()  # 新的信息列表
+
+            # 更新界面
+            datet = str(datetime.datetime.now())[:19]
+            if self.window_opend == False:
+                time.sleep(1)
+                init_t = threading.Thread(target=self.alert, args=('国债发行检测',))
+                init_t.start()
+                self.window_opend = True
+                time.sleep(1)
+                self.new_msg_process(info_now,init=True)  # 此处对差异进行处理
+
+            else:
+                self.window_info['time_box'].delete(END)
+                self.window_info['time_box'].insert(END, datet)
+
+
             """
             调试修改此处，假装有新的
             """
-            # info_now[3]=info_now[0]
-            # info_now[0]=info_now[2]
+            if test:
+                info_now[2]=info_now[0]
+                info_now[0]=info_now[1]
 
-            if info_now==[]:
-                print('无法更新公告列表')
-                return 1
             if info_now != self.info_0:  # 有差异
 
                 self.new_msg_process(info_now) # 此处对差异进行处理

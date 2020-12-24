@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="483809f8-5dbd-435d-a2ac-f2adad630117" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/bond_remind_tkinter.spec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/Analysis-00.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/EXE-00.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/PKG-00.pkg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/PKG-00.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/PYZ-00.pyz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/PYZ-00.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/Tree-00.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/Tree-01.toc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/base_library.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/bond_remind_tkinter.exe.manifest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/warn-bond_remind_tkinter.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/build/bond_remind_tkinter/xref-bond_remind_tkinter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/csv/债券成交2020-12-17.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/csv/债券成交2020-12-18.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/csv/债券成交2020-12-21.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/csv/债券成交2020-12-22.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../19_定时启动/dist/bond_remind_tkinter.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/.ipynb_checkpoints/HMM-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/.ipynb_checkpoints/代码-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/5分钟序列.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/HMM-to-predict-Stock-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/HMM-to-predict-Stock-master/代码.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/HMM-to-predict-Stock-master/基于隐马尔科夫链的沪深300研究.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/HMM-to-predict-Stock-master/沪深300数据.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/HMM.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/T_30min.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/data/T.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/data/TF.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/data/TS.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/model.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/model.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/output.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/stg.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/test2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/~$国债期货.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/主力切换.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/代码.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/分钟序列.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/原始数据/Temp.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/原始数据/Temp_5min.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/原始数据/Temp_IH5min.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/原始数据/Temp_half_hour_T.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/原始数据/Temp_hour_T.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/国债期货.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/结果.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20_HMM量化/股票5分钟序列.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../21_test/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../21_test/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/ec_lookback.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/echarts.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HMM-to-predict-Stock-master.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../06_02_从疫情数据魔改一个策略结果显示/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../06_02_从疫情数据魔改一个策略结果显示/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16_记账式国债发行/gov_bond.py" beforeDir="false" afterPath="$PROJECT_DIR$/../16_记账式国债发行/gov_bond.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19_定时启动/a_bond_issue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../19_定时启动/a_bond_issue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19_定时启动/bond_remind_tkinter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../19_定时启动/bond_remind_tkinter.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1m38NJm3L2aLrYZ3rwxcBufyqHL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.main.html">
+    <configuration name="main.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/22_再做一个web界面/templates/main.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/22_再做一个web界面/templates/test.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="controller.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/static/js/controller.js" working-dir="$PROJECT_DIR$/static/js">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.main.html" />
+        <item itemvalue="JavaScript Debug.test.html" />
+        <item itemvalue="Node.js.controller.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="483809f8-5dbd-435d-a2ac-f2adad630117" name="Default Changelist" comment="" />
+      <created>1608710873316</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608710873316</updated>
+      <workItem from="1608710875056" duration="4831000" />
+      <workItem from="1608773289023" duration="6407000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

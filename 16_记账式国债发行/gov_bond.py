@@ -60,7 +60,7 @@ while True:
                 head='共有{}个新消息'.format(change_num)
                 details = get_detail(info_now[i][2])
 
-                term=re.findall('(\d+年期)',details)[0]
+                term = re.findall('\d+年期|(?<=期限)\d+天', details)[0]  # 期限
                 amount = re.findall('(总额\d+亿元)',details)[0]
                 title=info_now[i][0]
                 amount_term.append('{}\n\n===>{}<===\n===>{}<===\n\n'.format(title,term,amount))
