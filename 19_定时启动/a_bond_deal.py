@@ -49,4 +49,5 @@ from timed_start import Timing
 if __name__ == '__main__':
     print('成交数据每日爬虫')
     # 工作日获取债券信息
-    Timing(title='债券成交爬虫',rule='weekday<5 and tim>"20:11:00"').main_loop(func=fetch_bond_info,wait_time=5)
+    # 8点结束交易，但是8:30-9:30才有成交量数据，之前的一直没有获取到成交量数据
+    Timing(title='债券成交爬虫',rule='weekday<5 and tim>"21:10:00"').main_loop(func=fetch_bond_info,wait_time=5)
