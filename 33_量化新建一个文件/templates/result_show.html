@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="../static/css/result.css">
+</head>
+<body>
+<h1>国债期货结果展示</h1>
+<!--<div id="info">init</div>-->
+<div id="result_fig">fig</div>
+<div>
+    <input type="range" value="0" id="range">
+    <div class="value" hidden></div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(".value").html("0")
+    var rangeSwitch=function () {
+        var x=$("#range").val();
+
+        $(".value").html(x)
+        update_fig()
+    }
+    $("#range").on("input",rangeSwitch)
+</script>
+<script src="../static/js/result.js"></script>
+<script src="../static/js/ec_result.js"></script>
+
+</body>
+</html>

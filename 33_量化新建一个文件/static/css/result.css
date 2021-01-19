@@ -1,0 +1,12 @@
+#result_fig{
+    width: 100%;
+    min-width: 400px;
+    height: 300px;
+}
+
+#range{
+    width: 90%;
+    min-width: 400px;
+    margin-left: 5%;
+
+}
