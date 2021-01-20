@@ -82,3 +82,7 @@ var result_fig_option = {
 
 var result_fig = echarts.init(document.getElementById('result_fig'));
 result_fig.setOption(result_fig_option);
+
+$(window).resize(function () {
+result_fig.resize()
+})
