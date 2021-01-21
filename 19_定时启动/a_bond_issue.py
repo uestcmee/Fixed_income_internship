@@ -12,4 +12,4 @@ print('国债发行检测')
 # 还是稳妥一点
 
 br=BondRemind() # 先初始化债券提醒，一个初始信息
-Timing(title='国债发行检测',rule='weekday<=5 and tim>"09:00:00" and time<"20:00:00"').main_loop(func=br.main_fun,wait_time=1)
+Timing(title='国债发行检测',rule='weekday<=5 and tim>"09:00:00" and tim<"20:00:00"').main_loop(func=br.main_fun,wait_time=1)
