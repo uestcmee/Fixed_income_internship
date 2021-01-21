@@ -29,7 +29,7 @@ close_earning=load_file(DATA_FILE).read_file()
 close_earning.drop(close_earning.index[0],inplace=True)
 dataset=close_earning[['earning','turnover']].values.reshape(-1,2)
 print(dataset)
-sys.exit(1)
+# sys.exit(1)
 def cal_the_return(testPredict,testY):
     compare=pd.DataFrame(testPredict,)
     compare['testy']=testY[0]
