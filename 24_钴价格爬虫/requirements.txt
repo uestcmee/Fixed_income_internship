@@ -292,7 +292,7 @@ traitlets==4.3.3
 tushare==1.2.60
 ujson==1.35
 unicodecsv==0.14.1
-urllib3==1.25.8
+urllib3==1.26.5
 virtualenv==20.0.31
 visualdl==2.0.4
 Wand==0.6.5
